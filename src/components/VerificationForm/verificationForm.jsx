@@ -1,7 +1,7 @@
 import Button from '../Button/Button';
 import Input from '../Input/Input';
 import styles from './style.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const FORMSTATE = {
@@ -29,8 +29,6 @@ const VerificationForm = () => {
 	const onChangePhone = (value) => {
 		const cleaned = value.replace(' ', '');
 		const form = { ...formState };
-
-		console.log(cleaned);
 
 		let setValue = '';
 
@@ -61,7 +59,7 @@ const VerificationForm = () => {
 			setFormState(form);
 			return;
 		}
-		if (cleaned.length > 2 && cleaned.length < 13) {
+		if (cleaned.length > 2 && cleaned.length < 16) {
 			setValue = cleaned;
 			form.phone.value = setValue;
 			setFormState(form);
@@ -76,20 +74,18 @@ const VerificationForm = () => {
 	};
 
 	const formatPhoneNumber = (phoneNumber) => {
-		let p = phoneNumber.replace('+7', '');
+		let p = phoneNumber.replace(/\s/g, '').trim();
 
-		let match = p.match(/(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
+		let match = p.match(/(\+7)(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
 
-		p =
-			phoneNumber.length === 0
-				? `+7 ${match[1] ? match[1] : ''} ${match[2] ? match[2] : ''} ${match[3] ? match[3] : ''} ${
-						match[4] ? match[4] : ''
-				  }`
-				: '';
+		if (match) {
+			console.log(match);
+			let p = `${match[1]} ${match[2]} ${match[3]} ${match[4]} ${match[5]}`;
 
-		console.log('p', match, p, phoneNumber);
-
-		return phoneNumber;
+			return p.trimEnd();
+		} else {
+			return '';
+		}
 	};
 
 	const submitForm = (e) => {
@@ -138,17 +134,16 @@ const VerificationForm = () => {
 					<Input
 						className={styles.input}
 						label={'Введите номер телефона'}
-						placeholder={'+71234567890'}
-						inputChildren={'213213123'}
+						placeholder={'+7 123 456 78 90'}
 						value={formatPhoneNumber(formState.phone.value)}
 						onChange={onChangePhone}
+						type="tel"
 					/>
 				) : (
 					<Input
 						className={styles.input}
 						label={'Введите E-mail'}
 						placeholder={'name@domain.ru'}
-						inputChildren={'213213123'}
 						value={formState.eMail.value}
 						onChange={onChangeEmail}
 					/>
