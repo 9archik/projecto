@@ -1,5 +1,8 @@
+import { useLocation } from 'react-router-dom';
 import styles from './style.module.css';
 const EmailForm = () => {
+	let { search } = useLocation();
+	const query = new URLSearchParams(search);
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
@@ -27,8 +30,8 @@ const EmailForm = () => {
 			</div>
 
 			<div className={styles.text}>
-				На почту <span>{localStorage.getItem('email')}</span> было отправлено письмо с ссылкой с
-				доступом в личный кабинет. Перейдите по этой ссылке
+				На почту <span>{query.get('field')}</span> было отправлено письмо с ссылкой с доступом в
+				личный кабинет. Перейдите по этой ссылке
 			</div>
 		</div>
 	);

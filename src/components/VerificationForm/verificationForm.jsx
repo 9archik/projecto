@@ -97,7 +97,7 @@ const VerificationForm = () => {
 		if (formType === 'phone') {
 			navigate('/sms');
 		} else {
-			navigate('/email');
+			navigate(`/email?email=${formState.eMail.value}`);
 			localStorage.setItem('email', formState.eMail.value);
 		}
 	};
