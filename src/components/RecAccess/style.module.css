@@ -1,0 +1,33 @@
+.name {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	gap: 12px;
+}
+
+.sideLine {
+	flex: 1 0 auto;
+	height: 1px;
+	opacity: 0.5;
+	background: #fff;
+}
+
+.text {
+	color: #fff;
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 500;
+}
+
+.buttons {
+	display: flex;
+	gap: 12px;
+	margin: 20px 0;
+}
+
+.buttons .btn {
+	background-color: transparent;
+	border: 1px solid rgba(255, 255, 255, 0.6);
+	display: flex;
+	gap: 4px;
+}

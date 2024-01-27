@@ -1,0 +1,45 @@
+.container {
+	background-color: #fff;
+	width: 100%;
+	border-radius: 16px;
+	padding: 20px 0;
+}
+
+.header {
+	text-align: center;
+	margin: 0 16px;
+	color: #313131;
+	font-size: 26px;
+	font-weight: 600;
+	line-height: 120%; /* 31.2px */
+	letter-spacing: -0.26px;
+	position: relative;
+}
+
+.header button {
+	position: absolute;
+	left: 0;
+	top: 0px;
+}
+.container form {
+	padding: 0 16px;
+	margin: 24px 0 0 0;
+}
+
+.timer {
+	color: #b0b0b0;
+
+	font-family: Inter;
+	font-size: 13px;
+	font-weight: 500;
+	margin: 8px 0 0 0;
+}
+
+.timer span {
+	font-weight: 600;
+	color: #0085e2;
+}
+
+.submitBtn {
+	margin: 32px 0 0 0;
+}
