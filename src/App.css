@@ -47,7 +47,6 @@ button {
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
-	/* background: url('./assets/image/background.png') lightgray 50% / cover no-repeat; */
 }
 
 main {
