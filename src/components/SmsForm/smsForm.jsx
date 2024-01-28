@@ -1,9 +1,34 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Input from '../Input/Input';
 import styles from './style.module.css';
 import Button from '../Button/Button';
 const SMSForm = () => {
 	const [input, setInput] = useState('');
+	const [timer, setTimer] = useState('01:00');
+	const timerRef = useRef(null);
+	const startTimerDate = useRef(new Date());
+
+	useEffect(() => {
+		timerRef.current = setInterval(() => {
+			const dateNow = new Date();
+			const diffInSeconds = Math.round((dateNow - startTimerDate.current) / 1000);
+			const seconds = 60 - diffInSeconds;
+
+			if (seconds < 0) {
+				clearInterval(timerRef.current);
+				console.log(timerRef);
+				return;
+			}
+			let minutes = Math.floor(seconds / 60);
+			let remainingSeconds = seconds % 60;
+			let formattedMinutes = minutes.toString().padStart(2, '0');
+			let formattedSeconds = remainingSeconds.toString().padStart(2, '0');
+			setTimer(`${formattedMinutes}:${formattedSeconds}`);
+		}, 500);
+
+		return () => clearInterval(timerRef.current);
+	}, []);
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
@@ -35,13 +60,14 @@ const SMSForm = () => {
 					label="Введите код из смс"
 					value={input}
 					onChange={(value) => {
-						setInput(value);
+						if (value.length <= 6 && !isNaN(value)) setInput(value);
 					}}
 					className={styles.input}
+					type="number"
 				/>
 
 				<div className={styles.timer}>
-					Повторно отправить код можно через <span>01:00</span>
+					Повторно отправить код можно через <span>{timer}</span>
 				</div>
 
 				<Button className={styles.submitBtn} type="submit">
