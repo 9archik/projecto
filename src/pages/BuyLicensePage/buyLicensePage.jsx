@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import Button from '../../components/Button/Button';
 import InputFields from './inputFields';
 import styles from './style.module.css';
@@ -12,6 +12,10 @@ const BuyLicensePage = () => {
 	const [faceValue, setFaceValue] = useState(1);
 
 	const [typePayment, setTypePayment] = useState(1);
+
+	useEffect(() => {
+		document.body.style.background = "white"
+	})
 
 	return (
 		<>
