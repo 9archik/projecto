@@ -13,10 +13,6 @@ const BuyLicensePage = () => {
 
 	const [typePayment, setTypePayment] = useState(1);
 
-	useLayoutEffect(() => {
-		document.body.style.background = 'white';
-	}, []);
-
 	return (
 		<>
 			<header className={`container ${styles.header}`}>
