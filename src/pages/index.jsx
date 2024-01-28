@@ -5,9 +5,7 @@ import { useLayoutEffect } from 'react';
 import bg from '../assets/image/background.png';
 
 const IndexPage = () => {
-	useLayoutEffect(() => {
-		document.body.style.background = `url("${bg}") lightgray 50% / cover no-repeat`;
-	}, []);
+
 	return (
 		<>
 			<Header />
