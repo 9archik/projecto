@@ -1,9 +1,12 @@
-import { useState, useRef, useEffect } from 'react';
+import {useState, useRef, useEffect, useContext} from 'react';
 import Input from '../Input/Input';
 import styles from './style.module.css';
 import Button from '../Button/Button';
 import Modal from '../Modal/Modal';
 import { useNavigate } from 'react-router-dom';
+import { get } from '../../lib/api';
+import { UserContext } from '../../context/user';
+
 const SMSForm = () => {
 	const [input, setInput] = useState('');
 	const [timer, setTimer] = useState('01:00');
@@ -11,6 +14,11 @@ const SMSForm = () => {
 	const [modal, setModal] = useState(false);
 	const startTimerDate = useRef(new Date());
 	const navigate = useNavigate();
+	const tg = window.Telegram.WebApp;
+	const user = useContext(UserContext);
+	const sendWelcomeMessage = () => {
+		get(`/users/sendWelcome`, {token: user.token})
+	}
 
 	useEffect(() => {
 		timerRef.current = setInterval(() => {
@@ -67,6 +75,7 @@ const SMSForm = () => {
 						onSubmit={(e) => {
 							e.preventDefault();
 							if (input.length === 6) {
+								sendWelcomeMessage();
 								setModal(true);
 							}
 						}}>
@@ -111,7 +120,7 @@ const SMSForm = () => {
 					<div className={styles.modalContainerText}>Регистрация успешно заверешена</div>
 					<Button
 						onClick={() => {
-							setModal(false);
+							tg.close();
 						}}
 						className={styles.modalCloseBtn}>
 						Закрыть
