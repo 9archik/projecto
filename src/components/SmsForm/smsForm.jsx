@@ -77,7 +77,7 @@ const SMSForm = () => {
 								if (value.length <= 6 && !isNaN(value)) setInput(value);
 							}}
 							className={styles.input}
-							type="number"
+							type="tel"
 						/>
 
 						<div className={styles.timer}>
