@@ -17,6 +17,8 @@ const BuyLicensePage = () => {
 		document.body.style.background = "white"
 	})
 
+	const tg = window.Telegram.WebApp;
+
 	return (
 		<>
 			<header className={`container ${styles.header}`}>
@@ -136,7 +138,13 @@ const BuyLicensePage = () => {
 				<InputFields variant={typePayment === 2 ? 2 : 1} />
 
 				<div className={styles.formFooter}>
-					<Button>Готово</Button>
+					<Button
+						onClick={() => {
+							tg.close();
+						}
+					}>
+						Готово
+					</Button>
 					<div className={styles.questions}>
 						Остались вопросы? <span>Пригласить менеджера</span>{' '}
 					</div>
