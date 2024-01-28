@@ -18,8 +18,17 @@ const FormState = {
 };
 const InputFields = ({ variant = 1 }) => {
 	const [formState, setFormState] = useState(FormState);
-	const onChangeCard = () => {
+	const onChangeCard = (value) => {
 		const form = { ...formState };
+		const digits = value.replace(/\D/g, '');
+
+		if (digits.length <= 16) {
+			form.card = `${digits.slice(0, 4)} ${digits.slice(4, 8)} ${digits.slice(
+				8,
+				12,
+			)} ${digits.slice(12, 16)}`.trim();
+			setFormState(form);
+		}
 	};
 
 	const onChangeName = (value) => {
@@ -82,6 +91,7 @@ const InputFields = ({ variant = 1 }) => {
 					className={styles.inputField}
 					type="tel"
 					value={formState.card}
+					onChange={onChangeCard}
 					label="Номер карты"
 				/>
 				<Input
