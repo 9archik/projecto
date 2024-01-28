@@ -129,7 +129,7 @@ const BuyLicensePage = () => {
 							type="radio"
 							value="3"
 						/>
-						<span>Партнер</span>
+						<span>Robokassa</span>
 					</label>
 				</div>
 
