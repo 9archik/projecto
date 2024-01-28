@@ -27,43 +27,66 @@ const VerificationForm = () => {
 	};
 
 	const onChangePhone = (value) => {
-		const cleaned = value.replace(' ', '');
+		const phoneNumber = value.replace(/\D/g, '');
 		const form = { ...formState };
 
-		let setValue = '';
-
-		if (cleaned.length === 1) {
-			if (cleaned[0] === '+' || cleaned[0] === '8' || cleaned[0] === '7') {
-				setValue = '+7';
-				form.phone.value = setValue;
-				setFormState(form);
-				return;
-			}
-			if (!isNaN(cleaned[0])) {
-				setValue = `+7${cleaned[0]}`;
-				form.phone.value = setValue;
-				setFormState(form);
-				return;
-			}
-			if (form.phone.value.length > cleaned.length) {
-				form.phone.value = '';
-				setFormState(form);
-				return;
-			}
-		}
-		if (
-			form.phone.value.length > cleaned.length &&
-			(cleaned.length === 1 || cleaned.length === 2)
-		) {
+		if (value === '') {
 			form.phone.value = '';
 			setFormState(form);
 			return;
 		}
-		if (cleaned.length > 2 && cleaned.length < 16) {
-			setValue = cleaned;
-			form.phone.value = setValue;
+
+		if (phoneNumber.length <= 1) {
+			if (value === '+' || phoneNumber[0] === '7' || phoneNumber[0] === '8') {
+				form.phone.value = `+7`;
+				setFormState(form);
+				return;
+			} else {
+				form.phone.value = `+7(${phoneNumber[0]}`;
+				setFormState(form);
+				return;
+			}
+		}
+
+		if (phoneNumber.length > 1 && phoneNumber.length < 5) {
+			form.phone.value = `+7 (${phoneNumber.slice(1)}`;
 			setFormState(form);
 			return;
+		}
+
+		if (phoneNumber.length >= 5 && phoneNumber.length < 8) {
+			form.phone.value = `+7 (${phoneNumber.slice(1, 4)}) ${phoneNumber.slice(4, 7)}`;
+			setFormState(form);
+			return;
+		}
+
+		if (phoneNumber.length >= 8 && phoneNumber.length < 10) {
+			form.phone.value = `+7 (${phoneNumber.slice(1, 4)}) ${phoneNumber.slice(
+				4,
+				7,
+			)} ${phoneNumber.slice(7, 9)}`;
+			setFormState(form);
+			return;
+		}
+
+		if (phoneNumber.length >= 10) {
+			form.phone.value = `+7 (${phoneNumber.slice(1, 4)}) ${phoneNumber.slice(
+				4,
+				7,
+			)} ${phoneNumber.slice(7, 9)} ${phoneNumber.slice(9, 11)}`;
+			setFormState(form);
+			return;
+		}
+	};
+
+	const onBackSpacePhone = (e) => {
+		console.log(e.keyCode);
+
+		const form = { ...formState };
+
+		if (e.keyCode === 8 && form.phone.value === '+7') {
+			form.phone.value = '';
+			setFormState(form);
 		}
 	};
 
@@ -71,21 +94,6 @@ const VerificationForm = () => {
 		const form = { ...formState };
 		form.address.value = value;
 		setFormState(form);
-	};
-
-	const formatPhoneNumber = (phoneNumber) => {
-		let p = phoneNumber.replace(/\s/g, '').trim();
-
-		let match = p.match(/(\+7)(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
-
-		if (match) {
-			console.log(match);
-			let p = `${match[1]} ${match[2]} ${match[3]} ${match[4]} ${match[5]}`;
-
-			return p.trimEnd();
-		} else {
-			return '';
-		}
 	};
 
 	const submitForm = (e) => {
@@ -134,9 +142,10 @@ const VerificationForm = () => {
 					<Input
 						className={styles.input}
 						label={'Введите номер телефона'}
-						placeholder={'+7 123 456 78 90'}
-						value={formatPhoneNumber(formState.phone.value)}
+						placeholder={'+7 (123) 456 78 90'}
+						value={formState.phone.value}
 						onChange={onChangePhone}
+						onKeyDown={onBackSpacePhone}
 						type="tel"
 					/>
 				) : (
