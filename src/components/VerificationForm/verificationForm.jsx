@@ -18,7 +18,7 @@ const FORMSTATE = {
 const VerificationForm = () => {
 	const [formType, setFormType] = useState('phone');
 	const [formState, setFormState] = useState(FORMSTATE);
-	const phoneRef = useRef();
+	const phoneRef = useRef(null);
 	const navigate = useNavigate();
 
 	const onChangeEmail = (value) => {
@@ -30,6 +30,8 @@ const VerificationForm = () => {
 	const onChangePhone = (value) => {
 		const phoneNumber = value.replace(/\D/g, '');
 		const form = { ...formState };
+
+		console.log(phoneRef)
 
 		if (value === '') {
 			form.phone.value = '';
@@ -78,6 +80,7 @@ const VerificationForm = () => {
 			setFormState(form);
 			if (phoneNumber.length === 11) {
 				phoneRef.current.blur();
+				console.log('blue')
 			}
 			return;
 		}
@@ -151,7 +154,7 @@ const VerificationForm = () => {
 						onChange={onChangePhone}
 						onKeyDown={onBackSpacePhone}
 						type="tel"
-						ref={phoneRef}
+						inputRef={phoneRef}
 					/>
 				) : (
 					<Input

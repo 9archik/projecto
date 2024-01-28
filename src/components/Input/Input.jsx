@@ -9,7 +9,7 @@ const Input = ({
 	inputChildren,
 	type,
 	onKeyDown,
-	ref
+	inputRef
 }) => {
 	return (
 		<label className={`${styles.container} ${className}`}>
@@ -18,7 +18,7 @@ const Input = ({
 			<input
 				type={type}
 				value={value}
-				ref={ref}
+				ref={inputRef}
 				onChange={(e) => {
 					if (typeof onChange === 'function') onChange(e.target.value);
 				}}
