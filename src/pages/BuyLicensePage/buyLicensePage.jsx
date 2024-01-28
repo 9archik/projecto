@@ -9,6 +9,10 @@ const variants = ['1-100', '101-200', '201-300'];
 const BuyLicensePage = () => {
 	const [selectValue, setSelectValue] = useState(0);
 
+	const [faceValue, setFaceValue] = useState(1);
+
+	const [typePayment, setTypePayment] = useState(1);
+
 	return (
 		<>
 			<header className={`container ${styles.header}`}>
@@ -53,12 +57,28 @@ const BuyLicensePage = () => {
 
 				<div className={styles.faceRadio}>
 					<label>
-						<input defaultChecked type={'radio'} name="face" value="1" />
+						<input
+							defaultChecked
+							onChange={() => {
+								setFaceValue(1);
+								setTypePayment(1);
+							}}
+							type={'radio'}
+							name="face"
+							value="1"
+						/>
 						<span>Физлицо</span>
 					</label>
 
 					<label>
-						<input type={'radio'} name="face" value="2" />
+						<input
+							type={'radio'}
+							name="face"
+							value="2"
+							onChange={() => {
+								setFaceValue(2);
+							}}
+						/>
 						<span>Юрлицо</span>
 					</label>
 				</div>
@@ -67,22 +87,49 @@ const BuyLicensePage = () => {
 
 				<div className={styles.paymentValues}>
 					<label>
-						<input defaultChecked type="radio" name="payment" value="1" />
+						<input
+							onChange={() => {
+								setTypePayment(1);
+							}}
+							defaultChecked
+							checked={typePayment === 1}
+							type="radio"
+							name="payment"
+							value="1"
+						/>
 						<span>Картой</span>
 					</label>
 
-					<label>
-						<input name="payment" type="radio" value="2" />
-						<span>По реквизитам</span>
-					</label>
+					{faceValue === 2 && (
+						<label>
+							<input
+								onChange={() => {
+									setTypePayment(2);
+								}}
+								checked={typePayment === 2}
+								name="payment"
+								type="radio"
+								value="2"
+							/>
+							<span>По реквизитам</span>
+						</label>
+					)}
 
 					<label>
-						<input name="payment" type="radio" value="3" />
+						<input
+							onChange={() => {
+								setTypePayment(3);
+							}}
+							checked={typePayment === 3}
+							name="payment"
+							type="radio"
+							value="3"
+						/>
 						<span>Партнер</span>
 					</label>
 				</div>
 
-				<InputFields />
+				<InputFields variant={typePayment === 2 ? 2 : 1} />
 
 				<div className={styles.formFooter}>
 					<Button>Готово</Button>
