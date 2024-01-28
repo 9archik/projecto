@@ -1,0 +1,68 @@
+.container {
+	width: 100%;
+	position: relative;
+	border-radius: 12px;
+	border-radius: 8px;
+	border: 1px solid #ddd;
+	display: flex;
+}
+
+.container input {
+	width: 100%;
+	padding: 0 8px;
+	background-color: transparent;
+	color: #313131;
+
+	font-family: Inter;
+	font-size: 15px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 150%; /* 22.5px */
+	letter-spacing: -0.165px;
+	height: 35px;
+	border: 0;
+	outline: 0;
+}
+
+.container svg {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 8px;
+	transition: 0.5s;
+}
+
+.container svg.active {
+	transform: translateY(-50%) rotate(180deg);
+}
+
+.dropDown {
+	max-height: 0px;
+	position: absolute;
+	top: 40px;
+	width: 100%;
+	transition: 0.5s;
+	border-radius: 8px;
+	background: #fff;
+	box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
+	overflow: hidden;
+	z-index: 1;
+}
+
+.dropDown.active {
+	max-height: 250px;
+}
+
+.dropDown li {
+	width: 100%;
+	color: #313131;
+	font-family: Inter;
+	font-size: 14px;
+	font-weight: 500;
+	padding: 12px;
+	cursor: pointer;
+}
+
+.dropDown li.active {
+	background: #f4f4f4;
+}

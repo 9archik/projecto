@@ -28,6 +28,10 @@
 	padding: 0 16px;
 }
 
+ul, li{
+	list-style: none;
+}
+
 button {
 	outline: 0;
 	border: 0;
@@ -52,8 +56,10 @@ footer {
 	flex: 0 0 auto;
 }
 
-.vertical-center{
+.vertical-center {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	padding-top: 12px;
+	padding-bottom: 12px;
 }

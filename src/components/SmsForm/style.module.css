@@ -51,8 +51,8 @@
 	align-items: center;
 	background-color: #fff;
 	border-radius: 10px;
-	transition: 2s;
-	transform: translateY(200%);
+	transition: 5s;
+	transform: translateY(100%);
 }
 
 .modalContainer.active {
