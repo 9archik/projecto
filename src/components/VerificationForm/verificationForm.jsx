@@ -1,7 +1,7 @@
 import Button from '../Button/Button';
 import Input from '../Input/Input';
 import styles from './style.module.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const FORMSTATE = {
@@ -18,6 +18,7 @@ const FORMSTATE = {
 const VerificationForm = () => {
 	const [formType, setFormType] = useState('phone');
 	const [formState, setFormState] = useState(FORMSTATE);
+	const phoneRef = useRef();
 	const navigate = useNavigate();
 
 	const onChangeEmail = (value) => {
@@ -75,6 +76,9 @@ const VerificationForm = () => {
 				7,
 			)} ${phoneNumber.slice(7, 9)} ${phoneNumber.slice(9, 11)}`;
 			setFormState(form);
+			if (phoneNumber.length === 11) {
+				phoneRef.current.blur();
+			}
 			return;
 		}
 	};
@@ -147,6 +151,7 @@ const VerificationForm = () => {
 						onChange={onChangePhone}
 						onKeyDown={onBackSpacePhone}
 						type="tel"
+						ref={phoneRef}
 					/>
 				) : (
 					<Input
