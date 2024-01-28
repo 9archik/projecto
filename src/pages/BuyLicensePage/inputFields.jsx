@@ -78,6 +78,7 @@ const InputFields = ({ variant = 1 }) => {
 		return (
 			<div className={styles.inputFields}>
 				<Input
+					key={'Номер карты'}
 					className={styles.inputField}
 					type="tel"
 					value={formState.card}
@@ -85,6 +86,7 @@ const InputFields = ({ variant = 1 }) => {
 				/>
 				<Input
 					className={styles.inputField}
+					key={'Фамилия и имя владельца карты'}
 					value={formState.name}
 					onChange={onChangeName}
 					label="Фамилия и имя владельца карты"
@@ -92,6 +94,7 @@ const InputFields = ({ variant = 1 }) => {
 
 				<div className={styles.doubleInputs}>
 					<Input
+						key={'Срок действия'}
 						value={formState.recent}
 						onChange={onChangeRecent}
 						className={styles.inputField}
@@ -104,6 +107,7 @@ const InputFields = ({ variant = 1 }) => {
 						className={styles.inputField}
 						onChange={onChangeCVV}
 						label={'CVV / CVC'}
+						key={'CVV / CVC'}
 						type={'password'}
 					/>
 				</div>
@@ -112,19 +116,19 @@ const InputFields = ({ variant = 1 }) => {
 	} else {
 		return (
 			<div className={styles.inputFields}>
-				<Input className={styles.inputField} type="tel" label="ИНН" value={''} />
-				<Input className={styles.inputField} type="tel" label="КПП" value={''} />
-				<Input className={styles.inputField} label="Наименование" value={''} />
+				<Input className={styles.inputField} key="ИНН" type="tel" label="ИНН" value={''} />
+				<Input className={styles.inputField} key="КПП" type="tel" label="КПП" value={''} />
+				<Input className={styles.inputField} key="Наименование" label="Наименование" value={''} />
 
 				<div className={styles.address}>Юридический адрес</div>
 
-				<Input className={styles.inputField} label="Регион" value={''} />
-				<Input className={styles.inputField} label="Пункт" value={''} />
-				<Input className={styles.inputField} label="Улица" value={''} />
+				<Input className={styles.inputField} key="Регион" label="Регион" value={''} />
+				<Input className={styles.inputField} key="Пункт" label="Пункт" value={''} />
+				<Input className={styles.inputField} label="Улица" key="Улица" value={''} />
 
 				<div className={styles.doubleInputs}>
-					<Input className={styles.inputField} label="Индекс" value={''} />
-					<Input className={styles.inputField} type="tel" label="Дом" value={''} />
+					<Input className={styles.inputField} key="Индекс" label="Индекс" value={''} />
+					<Input className={styles.inputField} key="Дом" type="tel" label="Дом" value={''} />
 				</div>
 			</div>
 		);
