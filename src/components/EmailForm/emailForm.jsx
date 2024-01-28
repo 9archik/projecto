@@ -1,12 +1,16 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './style.module.css';
 const EmailForm = () => {
 	let { search } = useLocation();
 	const query = new URLSearchParams(search);
+	const navigate = useNavigate();
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
-				<button>
+				<button
+					onClick={() => {
+						navigate(-1);
+					}}>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="27"

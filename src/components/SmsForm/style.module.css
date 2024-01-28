@@ -43,3 +43,30 @@
 .submitBtn {
 	margin: 32px 0 0 0;
 }
+
+.modalContainer {
+	padding: 20px 16px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #fff;
+	border-radius: 10px;
+	transition: 2s;
+	transform: translateY(200%);
+}
+
+.modalContainer.active {
+	transform: translateY(0);
+}
+
+.modalContainerText {
+	color: #313131;
+	text-align: center;
+	font-size: 26px;
+	font-weight: 600;
+	margin: 12px 0 0 0;
+}
+
+.modalCloseBtn {
+	margin: 32px 0 0 0;
+}
