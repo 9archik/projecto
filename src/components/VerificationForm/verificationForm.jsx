@@ -114,7 +114,7 @@ const VerificationForm = () => {
 	};
 	return (
 		<div className={styles.container}>
-			<div className={styles.header}>Верификация</div>
+			<div className={styles.header}>Создать аккаунт</div>
 			<div className={styles.toggler}>
 				<label>
 					<input
